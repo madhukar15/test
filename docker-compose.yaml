@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  myapp:
+    image: 843407455682.dkr.ecr.us-east-1.amazonaws.com/testrepo:latest
+    environment:
+      - AWS_ACCESS_KEY_ID=your_access_key
+      - AWS_SECRET_ACCESS_KEY=your_secret_key
+    restart: always
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30
+    environment:
+      - WATCHTOWER_CLEANUP=true  # Remove old images after updating
+      - WATCHTOWER_MONITOR_ONLY=false  # Set to true to only receive notifications
+    restart: always
