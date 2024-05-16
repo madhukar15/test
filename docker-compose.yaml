@@ -1,6 +1,7 @@
+version: '3.8'  # It's good to specify a version for compatibility reasons
 services:
   myapp:
-    image: 843407455682.dkr.ecr.us-east-1.amazonaws.com/testrepo:latest    
+    image: 843407455682.dkr.ecr.us-east-1.amazonaws.com/testrepo:latest
     restart: always
-
-  
+    ports:
+      - "80:80"  # This maps port 80 of the container to port 80 on the host
