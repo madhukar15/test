@@ -1,15 +1,6 @@
-version: '3.8'
 services:
   myapp:
     image: 843407455682.dkr.ecr.us-east-1.amazonaws.com/testrepo:latest    
     restart: always
 
-  watchtower:
-    image: containrrr/watchtower
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 30
-    environment:
-      - WATCHTOWER_CLEANUP=true  # Remove old images after updating
-      - WATCHTOWER_MONITOR_ONLY=false  # Set to true to only receive notifications
-    restart: always
+  
