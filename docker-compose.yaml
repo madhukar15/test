@@ -9,12 +9,5 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true  # Enable Watchtower monitoring for this container
 
-  watchtower:
-    image: containrrr/watchtower:latest
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - .docker/config.json:/config.json
-    environment:         
-      - AWS_REGION=us-east-1  # Set AWS region to us-east-1
-    command: --interval 60  # Set monitoring interval to 60 seconds
+  
 
