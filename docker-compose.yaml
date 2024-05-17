@@ -1,7 +1,24 @@
-version: '3.8'  # It's good to specify a version for compatibility reasons
+version: '3.8'
+
 services:
   myapp:
     image: 843407455682.dkr.ecr.us-east-1.amazonaws.com/testrepo:latest
     restart: always
     ports:
       - "80:80"  # This maps port 80 of the container to port 80 on the host
+    labels:
+      - com.centurylinklabs.watchtower.enable=true  # Enable Watchtower monitoring for this container
+
+  watchtower:
+    image: containrrr/watchtower:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .docker/config.json:/config.json
+    environment:
+      - HOME=/
+      - PATH=$PATH:/go/bin
+      - AWS_REGION=us-east-1  # Set AWS region to us-east-1
+    command: --interval 60  # Set monitoring interval to 60 seconds
+
+volumes: 
+  # Remove external volume if not required
