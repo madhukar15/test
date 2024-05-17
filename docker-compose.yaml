@@ -9,5 +9,17 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true  # Enable Watchtower monitoring for this container
 
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .docker/config.json:/config.json  # Adjust the path as needed
+    environment:
+      - AWS_REGION=us-east-1
+    command: --interval 60  # Check for updates every 60 seconds
+
+
   
 
