@@ -14,9 +14,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - .docker/config.json:/config.json
-    environment:
-      - HOME=/
-      - PATH=$PATH:/go/bin
+    environment:         
       - AWS_REGION=us-east-1  # Set AWS region to us-east-1
     command: --interval 60  # Set monitoring interval to 60 seconds
 
